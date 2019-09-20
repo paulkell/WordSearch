@@ -9,6 +9,5 @@
     <Grid Background="#FFB4FF00">
         <TextBox x:Name="ResultsTextBox" Grid.ColumnSpan="5" Margin="10,81,9.6,86" />
         <Button Click="Compute" Margin="333,348,332.6,0">Compute</Button>
-
     </Grid>
 </Window>

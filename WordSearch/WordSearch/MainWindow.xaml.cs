@@ -27,7 +27,12 @@ namespace WordSearch
         {
             InitializeComponent();
         }
-        public void Compute(object sener, RoutedEventArgs args)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        public void Compute(object sender, RoutedEventArgs args)
         {
             List<char> inputList = new List<char>();
 
@@ -42,6 +47,7 @@ namespace WordSearch
             new Node(inputList);
             ResultsTextBox.Clear();
             ResultsTextBox.Text = String.Join(Environment.NewLine, resultsList);
+            resultsList.Clear();
         }
     }
 }
