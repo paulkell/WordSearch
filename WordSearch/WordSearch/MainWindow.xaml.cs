@@ -37,7 +37,7 @@ namespace WordSearch
             List<char> inputList = new List<char>();
 
             new DictionaryReader();        
-            foreach(char character in ResultsTextBox.Text)
+            foreach(char character in InputTextBox.Text)
             {
                 if (character >= 'a' && character <= 'z')
                 {
@@ -47,6 +47,8 @@ namespace WordSearch
             new Node(inputList);
             ResultsTextBox.Clear();
             ResultsTextBox.Text = String.Join(Environment.NewLine, resultsList);
+
+            inputList.Clear();
             resultsList.Clear();
         }
     }
