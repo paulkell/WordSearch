@@ -10,16 +10,11 @@ namespace WordSearch.DictionaryFiles
     class DictionaryReader
     {
         private static String[] DictionaryList;
-        private String DictionaryName = "dictionary.txt";
+        private static String DictionaryName = "dictionary.txt";
 
         public DictionaryReader()
         {
             ReadDictionary(DictionaryName);
-        }
-        public DictionaryReader(String FileName)
-        {
-            this.DictionaryName = FileName;
-            ReadDictionary(this.DictionaryName);
         }
         private static void ReadDictionary(String DictionaryName)
         {
@@ -29,6 +24,11 @@ namespace WordSearch.DictionaryFiles
         public static bool DictionarySearch(String Word)
         {
             return Array.BinarySearch(DictionaryList, Word) > 0;
+        }
+        public static void RemoveWords(List<string> removeList)
+        {
+            DictionaryList = DictionaryList.Where(word => !removeList.Contains(word)).ToArray();
+            File.WriteAllLines(DictionaryName, DictionaryList);
         }
     }
 }

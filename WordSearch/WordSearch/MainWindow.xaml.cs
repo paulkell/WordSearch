@@ -26,9 +26,11 @@ namespace WordSearch
         public MainWindow()
         {
             InitializeComponent();
+            new DictionaryReader();
         }
+
         /// <summary>
-        /// 
+        /// Computes all valid words from input
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
@@ -36,8 +38,7 @@ namespace WordSearch
         {
             List<char> inputList = new List<char>();
 
-            new DictionaryReader();        
-            foreach(char character in InputTextBox.Text)
+            foreach (char character in InputTextBox.Text)
             {
                 if (character >= 'a' && character <= 'z')
                 {
