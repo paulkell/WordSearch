@@ -1,6 +1,3 @@
-a
-A
-aa
 aal
 aalii
 aam
@@ -31811,10 +31808,8 @@ cattlegate
 cattleless
 cattleman
 cattleya
-Cattleya
 cattleyak
 catty
-Catty
 cattyman
 Catullian
 catvine
@@ -197098,10 +197093,8 @@ szaibelyite
 Szekler
 szlachta
 szopelka
-Taal
 taar
 tab
-Tab
 tabacin
 tabacosis
 tabacum
