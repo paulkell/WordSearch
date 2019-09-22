@@ -36,6 +36,7 @@ namespace WordSearch
         /// <param name="args"></param>
         public void Compute(object sender, RoutedEventArgs args)
         {
+            ResultsTextBox.Clear();
             List<char> inputList = new List<char>();
 
             foreach (char character in InputTextBox.Text)
@@ -46,7 +47,6 @@ namespace WordSearch
                 }
             }
             new Node(inputList);
-            ResultsTextBox.Clear();
             ResultsTextBox.Text = String.Join(Environment.NewLine, resultsList);
 
             inputList.Clear();

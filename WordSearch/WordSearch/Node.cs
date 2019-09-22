@@ -24,7 +24,7 @@ namespace WordSearch
         {
             data = letter;
             Word = ParentWord + data;
-            if (DictionaryReader.DictionarySearch(Word))
+            if (DictionaryReader.DictionarySearch(Word) && !MainWindow.resultsList.Contains(Word))
             {
                 MainWindow.resultsList.Add(Word);
             }
