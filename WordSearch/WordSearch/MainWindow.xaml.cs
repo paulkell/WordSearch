@@ -30,16 +30,29 @@ namespace WordSearch
         }
 
         /// <summary>
-        /// Computes all valid words from input
+        /// Listener for Compute button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        public void Compute(object sender, RoutedEventArgs args)
+        public async void ComputeListener(object sender, RoutedEventArgs args)
         {
             ResultsTextBox.Clear();
+            StatusBlock.Text = "Status: Processing";
+            String input = InputTextBox.Text;
+            await Task.Run(() => Compute(input));
+            ResultsTextBox.Text = String.Join(Environment.NewLine, resultsList);
+            StatusBlock.Text = "Status: "+ resultsList.Count() +" results found";
+            resultsList.Clear();
+        }
+
+        /// <summary>
+        /// Computes all valid words from input
+        /// </summary>
+        private void Compute(String input)
+        {
             List<char> inputList = new List<char>();
 
-            foreach (char character in InputTextBox.Text)
+            foreach (char character in input)
             {
                 if (character >= 'a' && character <= 'z')
                 {
@@ -47,10 +60,8 @@ namespace WordSearch
                 }
             }
             new Node(inputList);
-            ResultsTextBox.Text = String.Join(Environment.NewLine, resultsList);
 
             inputList.Clear();
-            resultsList.Clear();
         }
     }
 }
