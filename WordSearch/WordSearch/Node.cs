@@ -24,7 +24,7 @@ namespace WordSearch
         {
             data = letter;
             Word = ParentWord + data;
-            if (DictionaryReader.DictionarySearch(Word) && !MainWindow.resultsList.Contains(Word))
+            if (DictionaryReader.DictionarySearch(Word))
             {
                 MainWindow.resultsList.Add(Word);
             }
@@ -37,11 +37,11 @@ namespace WordSearch
             {
                 List<char> TemporaryLetterList;
 
-                for (int i = 0; i < LetterList.Count; i++)
+                foreach (char letter in LetterList.Distinct())
                 {
-                    TemporaryLetterList = new List<char>(LetterList.ToArray());
-                    TemporaryLetterList.RemoveAt(i);
-                    children.Add(new Node(LetterList[i], TemporaryLetterList, Word));
+                    TemporaryLetterList = new List<char>(LetterList);
+                    TemporaryLetterList.Remove(letter);
+                    children.Add(new Node(letter, TemporaryLetterList, Word));
                 }
             }
         }
