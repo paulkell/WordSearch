@@ -8,9 +8,9 @@
         Title="WordSearch" Height="450" Width="800">
     <Grid Background="#FFB4FF00">
         <TextBlock Margin="10,46,0,338">Enter characters into text box:</TextBlock>
-        <TextBox x:Name="InputTextBox" Margin="190,46,333,343"></TextBox>
-        <TextBox x:Name="ResultsTextBox" Grid.ColumnSpan="5" Margin="10,81,9.6,86" />
-        <TextBlock x:Name="StatusBlock" Margin="580,10,9.6,367">Status: Awaiting Action</TextBlock>
+        <TextBox x:Name="InputTextBox" Margin="190,46,453,343" KeyDown="InputTextBoxListener"></TextBox>
+        <TextBox x:Name="ResultsTextBox" IsReadOnly="True" Grid.ColumnSpan="5" Margin="10,81,9.6,86" VerticalScrollBarVisibility="Visible"/>
+        <TextBlock x:Name="StatusBlock" Margin="551,33,38,343">Status: Awaiting Action</TextBlock>
         <Button Click="ComputeListener" Margin="333,348,332.6,0">Compute</Button>
     </Grid>
 </Window>

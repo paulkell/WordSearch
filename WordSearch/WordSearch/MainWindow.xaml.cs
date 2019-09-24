@@ -30,18 +30,40 @@ namespace WordSearch
         }
 
         /// <summary>
+        /// Listener for InputTextBox
+        /// </summary>
+        /// <param name="sender">The InputTextBox</param>
+        /// <param name="e">The action event</param>
+        private void InputTextBoxListener(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                ComputeActions();
+            }
+        }
+
+        /// <summary>
         /// Listener for Compute button
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        public async void ComputeListener(object sender, RoutedEventArgs args)
+        /// <param name="sender">The compute button</param>
+        /// <param name="args">Arguments for the action that has occurred</param>
+        private void ComputeListener(object sender, RoutedEventArgs args)
+        {
+            ComputeActions();
+        }
+
+        /// <summary>
+        /// Sets UI for processing mode and begins computation
+        /// </summary>
+        private async void ComputeActions()
         {
             ResultsTextBox.Clear();
             StatusBlock.Text = "Status: Processing";
             String input = InputTextBox.Text;
             await Task.Run(() => Compute(input));
+            resultsList.Sort();
             ResultsTextBox.Text = String.Join(Environment.NewLine, resultsList);
-            StatusBlock.Text = "Status: "+ resultsList.Count() +" results found";
+            StatusBlock.Text = "Status: " + resultsList.Count() + " results found";
             resultsList.Clear();
         }
 
