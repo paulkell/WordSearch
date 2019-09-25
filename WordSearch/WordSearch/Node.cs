@@ -42,6 +42,8 @@ namespace WordSearch
                     TemporaryLetterList = new List<char>(LetterList);
                     TemporaryLetterList.Remove(letter);
                     children.Add(new Node(letter, TemporaryLetterList, Word));
+                    // Removes children so they can be handled by garbage collector
+                    children.Clear();
                 }
             }
         }

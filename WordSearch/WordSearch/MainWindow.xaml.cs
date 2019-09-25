@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xaml;
+using System.Diagnostics;
 using WordSearch.DictionaryFiles;
 
 namespace WordSearch
@@ -58,12 +59,15 @@ namespace WordSearch
         private async void ComputeActions()
         {
             ResultsTextBox.Clear();
+            Stopwatch watch = new Stopwatch();
+            watch.Start();
             StatusBlock.Text = "Status: Processing";
             String input = InputTextBox.Text;
             await Task.Run(() => Compute(input));
             resultsList.Sort();
             ResultsTextBox.Text = String.Join(Environment.NewLine, resultsList);
-            StatusBlock.Text = "Status: " + resultsList.Count() + " results found";
+            watch.Stop();
+            StatusBlock.Text = "Status: " + resultsList.Count() + " results found\n"+"Time elapsed: " + watch.Elapsed;
             resultsList.Clear();
         }
 
