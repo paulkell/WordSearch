@@ -26,7 +26,10 @@ namespace WordSearch
             Word = ParentWord + data;
             if (DictionaryReader.DictionarySearch(Word))
             {
-                MainWindow.resultsList.Add(Word);
+                App.Current.Dispatcher.Invoke((System.Action)delegate
+                {
+                    MainWindow.resultsList.Add(new MainWindow.ValidWord() { Word = Word, Length=Word.Length, Order=MainWindow.resultsList.Count+1 });
+                });
             }
             CreateLevel(LetterList);
         }
@@ -42,6 +45,7 @@ namespace WordSearch
                     TemporaryLetterList = new List<char>(LetterList);
                     TemporaryLetterList.Remove(letter);
                     children.Add(new Node(letter, TemporaryLetterList, Word));
+
                     // Removes children so they can be handled by garbage collector
                     children.Clear();
                 }

@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Xaml;
 using System.Diagnostics;
 using WordSearch.DictionaryFiles;
+using System.Collections.ObjectModel;
 
 namespace WordSearch
 {
@@ -23,10 +24,11 @@ namespace WordSearch
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static List<string> resultsList = new List<string>();
+        public static ObservableCollection<ValidWord> resultsList = new ObservableCollection<ValidWord>();
         public MainWindow()
         {
             InitializeComponent();
+            ResultsGrid.ItemsSource = resultsList;
             new DictionaryReader();
         }
 
@@ -58,17 +60,16 @@ namespace WordSearch
         /// </summary>
         private async void ComputeActions()
         {
-            ResultsTextBox.Clear();
+            resultsList.Clear();
+
             Stopwatch watch = new Stopwatch();
             watch.Start();
             StatusBlock.Text = "Status: Processing";
             String input = InputTextBox.Text;
             await Task.Run(() => Compute(input));
-            resultsList.Sort();
-            ResultsTextBox.Text = String.Join(Environment.NewLine, resultsList);
             watch.Stop();
+
             StatusBlock.Text = "Status: " + resultsList.Count() + " results found\n"+"Time elapsed: " + watch.Elapsed;
-            resultsList.Clear();
         }
 
         /// <summary>
@@ -88,6 +89,12 @@ namespace WordSearch
             new Node(inputList);
 
             inputList.Clear();
+        }
+        public class ValidWord
+        {
+            public string Word { get; set; }
+            public int Length { get; set; }
+            public int Order { get; set; }
         }
     }
 }
