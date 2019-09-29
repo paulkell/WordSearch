@@ -9,7 +9,13 @@
     <Grid Background="#FFB4FF00">
         <TextBlock Margin="10,46,0,338">Enter characters into text box:</TextBlock>
         <TextBox x:Name="InputTextBox" Margin="190,46,453,343" KeyDown="InputTextBoxListener"></TextBox>
-        <DataGrid AutoGenerateColumns="True" Name="ResultsGrid" Margin="0,87,-0.4,99" />
+        <DataGrid AutoGenerateColumns="False" Name="ResultsGrid" Margin="10,87,9.6,77">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Word" Binding="{Binding Word}" Width="*"/>
+                <DataGridTextColumn Header="Length" Binding="{Binding Length}" Width="*"/>
+                <DataGridTextColumn Header="Order Found" Binding="{Binding Order}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <TextBlock x:Name="StatusBlock" Margin="551,33,38,343">Status: Awaiting Action</TextBlock>
         <Button Click="ComputeListener" Margin="333,348,332.6,0">Compute</Button>
     </Grid>
