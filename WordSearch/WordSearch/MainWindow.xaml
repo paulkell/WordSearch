@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         Title="WordSearch" Height="450" Width="800">
     <Grid Background="#FFB4FF00">
-        <TextBlock Margin="10,46,0,338">Enter characters into text box:</TextBlock>
-        <TextBox x:Name="InputTextBox" Margin="190,46,453,343" KeyDown="InputTextBoxListener"></TextBox>
-        <DataGrid AutoGenerateColumns="False" Name="ResultsGrid" Margin="10,87,9.6,77">
+        <TextBlock Margin="10,46,0,338" HorizontalAlignment="Left">Enter characters into text box:</TextBlock>
+        <TextBox x:Name="InputTextBox" Margin="173,46,0,343" KeyDown="InputTextBoxListener" HorizontalAlignment="Left" VerticalAlignment="Top" Width="144"></TextBox>
+        <DataGrid AutoGenerateColumns="False" Name="ResultsGrid" Margin="10,87,9.6,77" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Word" Binding="{Binding Word}" Width="*"/>
                 <DataGridTextColumn Header="Length" Binding="{Binding Length}" Width="*"/>
                 <DataGridTextColumn Header="Order Found" Binding="{Binding Order}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock x:Name="StatusBlock" Margin="551,33,38,343">Status: Awaiting Action</TextBlock>
-        <Button Click="ComputeListener" Margin="333,348,332.6,0">Compute</Button>
+        <TextBlock x:Name="StatusBlock" Margin="551,33,38,343" HorizontalAlignment="Right">Status: Awaiting Action</TextBlock>
+        <Button x:Name="ComputeButton" Click="ComputeListener" Margin="341,0,345.6,10" VerticalAlignment="Bottom" HorizontalAlignment="Center" Height="53" Width="107">Compute</Button>
     </Grid>
 </Window>
