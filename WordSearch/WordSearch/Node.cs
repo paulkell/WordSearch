@@ -28,7 +28,7 @@ namespace WordSearch
             {
                 App.Current.Dispatcher.Invoke((System.Action)delegate
                 {
-                    MainWindow.resultsList.Add(new MainWindow.ValidWord() { Word = Word, Length=Word.Length, Order=MainWindow.resultsList.Count+1 });
+                    MainWindow.resultsList.Add(new ValidWord() { Word = Word, Length=Word.Length, Order=MainWindow.resultsList.Count+1 });
                 });
             }
             CreateLevel(LetterList);

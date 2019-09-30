@@ -25,6 +25,5 @@ C:\Users\Tony\Documents\Visual Studio 2019\Projects\WordSearch\WordSearch\WordSe
 C:\Users\Tony\Documents\Visual Studio 2019\Projects\WordSearch\WordSearch\WordSearch\obj\Release\WordSearch.g.resources
 C:\Users\Tony\Documents\Visual Studio 2019\Projects\WordSearch\WordSearch\WordSearch\obj\Release\WordSearch.Properties.Resources.resources
 C:\Users\Tony\Documents\Visual Studio 2019\Projects\WordSearch\WordSearch\WordSearch\obj\Release\WordSearch.csproj.GenerateResource.cache
-C:\Users\Tony\Documents\Visual Studio 2019\Projects\WordSearch\WordSearch\WordSearch\obj\Release\WordSearch.csproj.CoreCompileInputs.cache
 C:\Users\Tony\Documents\Visual Studio 2019\Projects\WordSearch\WordSearch\WordSearch\obj\Release\WordSearch.exe
 C:\Users\Tony\Documents\Visual Studio 2019\Projects\WordSearch\WordSearch\WordSearch\obj\Release\WordSearch.pdb

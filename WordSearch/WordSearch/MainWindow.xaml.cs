@@ -16,6 +16,7 @@ using System.Xaml;
 using System.Diagnostics;
 using WordSearch.DictionaryFiles;
 using System.Collections.ObjectModel;
+using System.Collections;
 
 namespace WordSearch
 {
@@ -90,11 +91,51 @@ namespace WordSearch
 
             inputList.Clear();
         }
-        public class ValidWord
+
+        /// <summary>
+        /// Adds selected words
+        /// </summary>
+        /// <param name="sender">The sender is the add option in context menu</param>
+        /// <param name="args"></param>
+        public void AddListener(object sender, RoutedEventArgs args)
         {
-            public string Word { get; set; }
-            public int Length { get; set; }
-            public int Order { get; set; }
+            List<string> addList = new List<string>();
+
+            foreach(ValidWord row in ResultsGrid.SelectedItems)
+            {
+                addList.Add(row.Word);
+            }
+            int addedWordCount = DictionaryFiles.DictionaryReader.AddWords(addList);
+            StatusBlock.Text = "Dictionary Modified\nWords added: " + addedWordCount;
+        }
+
+        /// <summary>
+        /// Removes selected words
+        /// </summary>
+        /// <param name="sender">The sender is the remove option in context menu</param>
+        /// <param name="args"></param>
+        public void RemoveListener(object sender, RoutedEventArgs args)
+        {
+            List<string> removeList = new List<string>();
+
+            foreach (ValidWord row in ResultsGrid.SelectedItems)
+            {
+                removeList.Add(row.Word);
+            }
+            int removedCount = DictionaryFiles.DictionaryReader.RemoveWords(removeList);
+
+            foreach(string word in removeList)
+            {
+                foreach(ValidWord row in resultsList)
+                {
+                    if(row.Word == word)
+                    {
+                        resultsList.Remove(row);
+                        break;
+                    }
+                }
+            }
+            StatusBlock.Text = "Dictionary Modified\nWords removed: " + removedCount;
         }
     }
 }
