@@ -9,7 +9,13 @@
     <Grid Background="#FFB4FF00">
         <TextBlock Margin="10,46,0,338" HorizontalAlignment="Left">Enter characters into text box:</TextBlock>
         <TextBox x:Name="InputTextBox" Margin="173,46,0,343" KeyDown="InputTextBoxListener" HorizontalAlignment="Left" VerticalAlignment="Top" Width="144"></TextBox>
-        <DataGrid AutoGenerateColumns="False" Name="ResultsGrid" Margin="10,87,9.6,77" IsReadOnly="True">
+        <DataGrid Name="ResultsGrid" AutoGenerateColumns="False" Margin="10,87,9.6,77" IsReadOnly="False">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add selected" Click="AddListener"/>
+                    <MenuItem Header="Remove selected" Click="RemoveListener"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Word" Binding="{Binding Word}" Width="*"/>
                 <DataGridTextColumn Header="Length" Binding="{Binding Length}" Width="*"/>

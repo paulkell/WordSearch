@@ -37,22 +37,29 @@ namespace WordSearch.DictionaryFiles
         }
 
         /// <summary>
-        /// Removes all words in input list from dictionary
+        /// Removes words from dictionary if they exist
         /// </summary>
         /// <param name="removeList">A list of words to be removed from dictionary</param>
-        public static void RemoveWords(List<string> removeList)
+        /// <returns>Count of words removed from dictionary</returns>
+        public static int RemoveWords(List<string> removeList)
         {
+            int initialCount = DictionaryList.Count();
+
             DictionaryList = DictionaryList.Where(word => !removeList.Contains(word)).ToArray();
             OverwriteDictionaryFile();
+
+            return initialCount - DictionaryList.Count();
         }
 
         /// <summary>
-        /// Adds all words in input list to dictionary
+        /// Adds words to dictionary if they don't already exist
         /// </summary>
         /// <param name="addList">A list of words to be added to dictionary</param>
-        public static void AddWords(List<string> addList)
+        /// <returns>Count of words added to dictionary</returns>
+        public static int AddWords(List<string> addList)
         {
             int locationIndex;
+            int addedWordCount = 0;
 
             foreach (String Word in addList)
             {
@@ -74,10 +81,13 @@ namespace WordSearch.DictionaryFiles
                     List<string> temp = beforeIndex.Append(Word).ToList();
                     temp.AddRange(afterIndex.ToList());
                     DictionaryList = temp.ToArray();
+
+                    addedWordCount++;
                 }
             }
 
             OverwriteDictionaryFile();
+            return addedWordCount;
         }
 
         /// <summary>
