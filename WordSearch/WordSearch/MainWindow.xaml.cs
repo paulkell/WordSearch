@@ -30,7 +30,15 @@ namespace WordSearch
         {
             InitializeComponent();
             ResultsGrid.ItemsSource = resultsList;
-            new DictionaryReader();
+            try
+            {
+                new DictionaryReader();
+            }
+            catch (System.IO.FileNotFoundException)
+            {
+                StatusBlock.Text = "Cannot find file: dictionary.txt";
+                ComputeButton.IsEnabled = false;
+            }
         }
 
         /// <summary>
@@ -101,12 +109,19 @@ namespace WordSearch
         {
             List<string> addList = new List<string>();
 
-            foreach(ValidWord row in ResultsGrid.SelectedItems)
+            try
             {
-                addList.Add(row.Word);
+                foreach (ValidWord row in ResultsGrid.SelectedItems)
+                {
+                    addList.Add(row.Word);
+                }
+                int addedWordCount = DictionaryFiles.DictionaryReader.AddWords(addList);
+                StatusBlock.Text = "Dictionary Modified\nWords added: " + addedWordCount;
             }
-            int addedWordCount = DictionaryFiles.DictionaryReader.AddWords(addList);
-            StatusBlock.Text = "Dictionary Modified\nWords added: " + addedWordCount;
+            catch (InvalidCastException)
+            {
+                StatusBlock.Text = "Selected item is blank";
+            }
         }
 
         /// <summary>
@@ -118,24 +133,31 @@ namespace WordSearch
         {
             List<string> removeList = new List<string>();
 
-            foreach (ValidWord row in ResultsGrid.SelectedItems)
+            try
             {
-                removeList.Add(row.Word);
-            }
-            int removedCount = DictionaryFiles.DictionaryReader.RemoveWords(removeList);
-
-            foreach(string word in removeList)
-            {
-                foreach(ValidWord row in resultsList)
+                foreach (ValidWord row in ResultsGrid.SelectedItems)
                 {
-                    if(row.Word == word)
+                    removeList.Add(row.Word);
+                }
+                int removedCount = DictionaryFiles.DictionaryReader.RemoveWords(removeList);
+
+                foreach (string word in removeList)
+                {
+                    foreach (ValidWord row in resultsList)
                     {
-                        resultsList.Remove(row);
-                        break;
+                        if (row.Word == word)
+                        {
+                            resultsList.Remove(row);
+                            break;
+                        }
                     }
                 }
+                StatusBlock.Text = "Dictionary Modified\nWords removed: " + removedCount;
             }
-            StatusBlock.Text = "Dictionary Modified\nWords removed: " + removedCount;
+            catch (InvalidCastException)
+            {
+                StatusBlock.Text = "Selected item is blank";
+            }
         }
     }
 }
