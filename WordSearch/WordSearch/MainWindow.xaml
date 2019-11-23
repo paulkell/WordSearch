@@ -18,8 +18,8 @@
             </DataGrid.ContextMenu>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Word" Binding="{Binding Word}" Width="*"/>
-                <DataGridTextColumn Header="Length" Binding="{Binding Length}" Width="*"/>
-                <DataGridTextColumn Header="Order Found" Binding="{Binding Order}" Width="*"/>
+                <DataGridTextColumn Header="Length" Binding="{Binding Length}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Order Found" Binding="{Binding Order}" Width="*" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock x:Name="StatusBlock" Margin="551,33,38,343" HorizontalAlignment="Right">Status: Awaiting Action</TextBlock>

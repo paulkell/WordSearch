@@ -9,7 +9,18 @@ namespace WordSearch
     public class ValidWord
     {
         public string Word { get; set; }
-        public int Length { get; set; }
-        public int Order { get; set; }
+        public string Length { get; set; }
+        public string Order { get; set; }
+        public ValidWord(string word, int order)
+        {
+            Word = word;
+            Length = word.Length.ToString();
+            Order = order.ToString();
+        }
+        public ValidWord()
+        {
+            Length = "-";
+            Order = "New";
+        }
     }
 }
